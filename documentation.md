@@ -17,7 +17,7 @@ import math
 arguments:
       seller_type (str) - owner:cto, dealer:cto, all:cta
       search_key (str) - key word
-      min_year (int) - minimum year (optional) if not means all
-      max_year (int) - maximim year (optional) if not means all
+      min_year (int) - minimum year
+      max_year (int) - maximim year
 
 returns: df (pd dataframe) - dataframe with title, price, location
