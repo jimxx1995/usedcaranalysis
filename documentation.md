@@ -1,3 +1,5 @@
+# get_all_search fuction
+
 # Packages for get_all_search function:
 
 import requests<br/>
@@ -10,7 +12,7 @@ import pandas as pd<br/>
 
 import math<br/>
 
-## parameters:
+### parameters:
 
 arguments:<br/>
       seller_type (str) - owner:cto, dealer:cto, all:cta<br/>
