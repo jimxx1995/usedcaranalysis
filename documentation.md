@@ -10,7 +10,7 @@ import pandas as pd<br/>
 
 import math<br/>
 
-# parameters:
+## parameters:
 
 arguments:<br/>
       seller_type (str) - owner:cto, dealer:cto, all:cta<br/>
@@ -19,3 +19,19 @@ arguments:<br/>
       max_year (int) - maximim year<br/>
 
 returns: df (pd dataframe) - dataframe with title, price, location
+
+
+# Clean Location Function
+
+clean the location column, extract the location from messy string
+
+### package:
+
+import numpy as np
+import re
+
+### parameters:
+
+arguments: location_list(list)
+
+return: location_list (list)
