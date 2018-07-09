@@ -76,5 +76,7 @@ def get_all_search(seller_type, search_key, min_year, max_year):
     location_unlist = [j for i in location_list for j in i]
 
     df = pd.DataFrame({'title':title_unlist, 'price':price_unlist, 'location':location_unlist})
+    df.price = df.price.apply(lambda x: x.replace('$',''))
+    df.price = df.price.apply(lambda x: int(x))
 
     return df
