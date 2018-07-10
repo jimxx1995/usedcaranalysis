@@ -53,6 +53,9 @@ def get_all_search(seller_type, search_key, min_year, max_year):
         price_text_list = [detail_list[i].find('span', class_ = 'result-price') for i in range(len(detail_list))]
         price_list = [i.text if i is not None else '' for i in price_text_list]
 
+        #url
+        url_list = [[a['href'] for a in detail_list[i].find_all('a', href = True)][0] for i in range(len(detail_list))]
+
         #location
         location_text_list = [detail_list[i].find('span', class_ = 'result-hood') for i in range(len(detail_list))]
         location_list = []
@@ -69,9 +72,9 @@ def get_all_search(seller_type, search_key, min_year, max_year):
         page_total = math.ceil(int(posts_num)/120)
         page_num = [i*120 for i in range(0,page_total)]
 
-        return title_list, price_list, location_list, page_num
+        return title_list, price_list, location_list, url_list, page_num
 
-    page_num = get_each_page(seller_type, 0,search_key, min_year, max_year)[3]
+    page_num = get_each_page(seller_type, 0,search_key, min_year, max_year)[4]
 
     title_list = [get_each_page(seller_type, page, search_key, min_year, max_year)[0] for page in page_num]
     title_unlist = [j for i in title_list for j in i]
@@ -82,7 +85,10 @@ def get_all_search(seller_type, search_key, min_year, max_year):
     location_list = [get_each_page(seller_type, page, search_key, min_year, max_year)[2] for page in page_num]
     location_unlist = [j for i in location_list for j in i]
 
-    df = pd.DataFrame({'title':title_unlist, 'price':price_unlist, 'location':location_unlist})
+    url_list = [get_each_page(seller_type, page, search_key, min_year, max_year)[3] for page in page_num]
+    url_unlist = [j for i in url_list for j in i]
+
+    df = pd.DataFrame({'title':title_unlist, 'price':price_unlist, 'location':location_unlist, 'link': url_unlist})
     df.price = df.price.apply(lambda x: x.replace('$',''))
     df.price = df.price.apply(lambda x: int(x))
 
