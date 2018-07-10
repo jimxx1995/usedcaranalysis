@@ -77,16 +77,16 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
 
     page_num = get_each_page(seller_type, 0,search_key, min_year, max_year, min_price, max_price)[4]
 
-    title_list = [get_each_page(seller_type, page, search_key, min_year, max_year)[0] for page in page_num]
+    title_list = [get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price)[0] for page in page_num]
     title_unlist = [j for i in title_list for j in i]
 
-    price_list = [get_each_page(seller_type, page, search_key, min_year, max_year)[1] for page in page_num]
+    price_list = [get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price)[1] for page in page_num]
     price_unlist = [j for i in price_list for j in i]
 
-    location_list = [get_each_page(seller_type, page, search_key, min_year, max_year)[2] for page in page_num]
+    location_list = [get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price)[2] for page in page_num]
     location_unlist = [j for i in location_list for j in i]
 
-    url_list = [get_each_page(seller_type, page, search_key, min_year, max_year)[3] for page in page_num]
+    url_list = [get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price)[3] for page in page_num]
     url_unlist = [j for i in url_list for j in i]
 
     df = pd.DataFrame({'title':title_unlist, 'price':price_unlist, 'location':location_unlist, 'link': url_unlist})
