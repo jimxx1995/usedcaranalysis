@@ -102,11 +102,14 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
 
     mileage = []
     for i in info_list:
+        exist = 0
         for j in i:
             if 'odometer:' in j:
-                mileage.append(j)
-            else:
-                mileage.append('na')
+                exist = 1
+                mileage.append(int(j.strip('odometer: ')))
+                break
+        if exist == 0:
+            mileage.append('')
 
     df = pd.DataFrame({'title':title_unlist, 'price':price_unlist, 'location':location_unlist, 'link': url_unlist, 'mileage':mileage})
     df.price = df.price.apply(lambda x: x.replace('$',''))
