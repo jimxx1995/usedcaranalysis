@@ -89,7 +89,26 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
     url_list = [get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price)[3] for page in page_num]
     url_unlist = [j for i in url_list for j in i]
 
-    df = pd.DataFrame({'title':title_unlist, 'price':price_unlist, 'location':location_unlist, 'link': url_unlist})
+    #########################get info inside each page###########################
+    info_list = []
+    for i in url_unlist:
+        page = requests.get(i)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        span = soup.find_all('div', class_ = 'mapAndAttrs')
+        info = span[0].find_all('p', class_ = 'attrgroup')[1].find_all('span')
+        #all detail for one car
+        info_detail = [i.text for i in info]
+        info_list.append(info_detail)
+
+    mileage = []
+    for i in info_list:
+        for j in i:
+            if 'odometer:' in j:
+                mileage.append(j)
+            else:
+                mileage.append('na')
+
+    df = pd.DataFrame({'title':title_unlist, 'price':price_unlist, 'location':location_unlist, 'link': url_unlist, 'mileage':mileage})
     df.price = df.price.apply(lambda x: x.replace('$',''))
     df.price = df.price.apply(lambda x: int(x))
 
