@@ -16,7 +16,7 @@ import re
 ############I am a separation line###########
 #############################################
 
-def get_all_search(seller_type, search_key, min_year, max_year):
+def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_price):
     """ get info for all search
 
     arguments:
@@ -28,7 +28,7 @@ def get_all_search(seller_type, search_key, min_year, max_year):
     returns: df (pd dataframe) - dataframe with title, price, location
     """
 
-    def get_each_page(seller_type, page, search_key, min_year, max_year):
+    def get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price):
         """ get info for each page
 
         arguments: seller_type (str) - owner:cto, dealer:cto, all:cta
@@ -37,8 +37,9 @@ def get_all_search(seller_type, search_key, min_year, max_year):
         return: title_list (list), price_list (list), location_list (list), page_num (int)
         """
 
-        url = 'https://sfbay.craigslist.org/search/' + seller_type + '?s=' + str(page) + '&query=' + search_key + \
-        '&min_auto_year=' + str(min_year) + '&max_auto_year=' + str(max_year)
+        url = 'https://sfbay.craigslist.org/search/' + seller_type + '?s=' + str(page) + '&query=' + search_key +\
+         '&min_price=' + str(min_price) + '&max_price=' + str(max_price) +\
+          '&min_auto_year=' + str(min_year) + '&max_auto_year=' + str(max_year)
 
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
