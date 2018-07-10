@@ -75,7 +75,7 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
 
         return title_list, price_list, location_list, url_list, page_num
 
-    page_num = get_each_page(seller_type, 0,search_key, min_year, max_year)[4]
+    page_num = get_each_page(seller_type, 0,search_key, min_year, max_year, min_price, max_price)[4]
 
     title_list = [get_each_page(seller_type, page, search_key, min_year, max_year)[0] for page in page_num]
     title_unlist = [j for i in title_list for j in i]
