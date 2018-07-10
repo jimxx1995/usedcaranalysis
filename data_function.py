@@ -22,8 +22,10 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
     arguments:
         seller_type (str) - owner:cto, dealer:cto, all:cta
         search_key (str) - key word
-        min_year (int) - minimum year (optional) if not means all
-        max_year (int) - maximim year (optional) if not means all
+        min_year (int) - minimum year
+        max_year (int) - maximim year
+        min_price (int) - minimum price
+        max_price (int) - maximum price
 
     returns: df (pd dataframe) - dataframe with title, price, location
     """
@@ -33,6 +35,7 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
 
         arguments: seller_type (str) - owner:cto, dealer:cto, all:cta
                     page (int) - page number
+                    same as above
 
         return: title_list (list), price_list (list), location_list (list), page_num (int)
         """
