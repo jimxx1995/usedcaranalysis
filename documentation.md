@@ -22,7 +22,7 @@ arguments:<br/>
       min_price (int) - minimum price<br/>
       max_price (int) - maximim price<br/>
 
-returns: df (pd dataframe) - dataframe with title, price, location, mileage
+returns: df (pd dataframe) - dataframe 
 
 
 # Clean Location Function

@@ -27,7 +27,7 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
         min_price (int) - minimum price
         max_price (int) - maximum price
 
-    returns: df (pd dataframe) - dataframe with title, price, location
+    returns: df (pd dataframe) - dataframe
     """
 
     def get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price):
@@ -103,6 +103,7 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
         info_detail = [i.text for i in info]
         info_list.append(info_detail)
 
+    #mileage
     mileage = []
     for i in info_list:
         exist = 0
@@ -114,9 +115,63 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
         if exist == 0:
             mileage.append('')
 
-    df = pd.DataFrame({'title':title_unlist, 'price':price_unlist, 'location':location_unlist, 'link': url_unlist, 'mileage':mileage})
+    #transmission
+    tranny = []
+    for i in info_list:
+        exist = 0
+        for j in i:
+            if 'transmission: ' in j:
+                exist = 1
+                tranny.append(j[14:])
+                break
+        if exist == 0:
+            tranny.append('')
+
+    #title status
+    car_title = []
+    for i in info_list:
+        exist = 0
+        for j in i:
+            if 'title status: ' in j:
+                exist = 1
+                car_title.append(j[14:])
+                break
+        if exist == 0:
+            car_title.append('')
+
+    #condition
+    condition = []
+    for i in info_list:
+        exist = 0
+        for j in i:
+            if 'condition: ' in j:
+                exist = 1
+                condition.append(j[11:])
+                break
+        if exist == 0:
+            condition.append('')
+
+    #drive
+    drive = []
+    for i in info_list:
+        exist = 0
+        for j in i:
+            if 'drive: ' in j:
+                exist = 1
+                drive.append(j[7:])
+                break
+        if exist == 0:
+            drive.append('')
+
+    #build dataframe
+    df = pd.DataFrame({'post_title':title_unlist, 'price':price_unlist, 'location':location_unlist,\
+                       'link': url_unlist, 'mileage':mileage, 'transmission':tranny,\
+                       'title_status':car_title, 'condition':condition, 'drive':drive})
     df.price = df.price.apply(lambda x: x.replace('$',''))
     df.price = df.price.apply(lambda x: int(x))
+
+    cols = ['post_title', 'mileage', 'price', 'condition', 'title_status', 'transmission', 'drive', 'location', 'link']
+    df = df[cols]
 
     return df
 
