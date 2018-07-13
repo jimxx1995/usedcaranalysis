@@ -15,14 +15,15 @@ import math<br/>
 ### parameters:
 
 arguments:<br/>
-      seller_type (str) - owner:cto, dealer:cto, all:cta<br/>
+      city (str) - desired city (detail refer to cities.json)
+      seller_type (str) - owner, dealer, all<br/>
       search_key (str) - key word<br/>
       min_year (int) - minimum year<br/>
       max_year (int) - maximim year<br/>
       min_price (int) - minimum price<br/>
       max_price (int) - maximim price<br/>
 
-returns: df (pd dataframe) - dataframe 
+returns: df (pd dataframe) - dataframe
 
 
 # Clean Location Function

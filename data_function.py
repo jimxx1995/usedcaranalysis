@@ -16,10 +16,11 @@ import re
 ############I am a separation line###########
 #############################################
 
-def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_price):
+def get_all_search(city, seller_type, search_key, min_year, max_year, min_price, max_price):
     """ get info for all search
 
     arguments:
+        city (str) - desired city
         seller_type (str) - owner:cto, dealer:cto, all:cta
         search_key (str) - key word
         min_year (int) - minimum year
@@ -30,7 +31,7 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
     returns: df (pd dataframe) - dataframe
     """
 
-    def get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price):
+    def get_each_page(city, seller_type, page, search_key, min_year, max_year, min_price, max_price):
         """ get info for each page
 
         arguments: seller_type (str) - owner:cto, dealer:cto, all:cta
@@ -39,8 +40,20 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
 
         return: title_list (list), price_list (list), location_list (list), page_num (int)
         """
+        ######################Dictionary######################
+        owner_dict = {'owner':'cto','dealer':'ctd','all':'cta'}
 
-        url = 'https://sfbay.craigslist.org/search/' + seller_type + '?s=' + str(page) + '&query=' + search_key +\
+        states_url = 'https://www.craigslist.org/about/sites'
+        states_page = requests.get(states_url)
+        state_soup = BeautifulSoup(states_page.content, 'html.parser')
+        all_cities = state_soup.find_all('div', class_ = 'colmask')[0].find_all('li')
+        all_cities_url = [i.find('a')['href'] + 'search/' for i in all_cities]
+        all_cities_name = [i.text for i in all_cities]
+
+        all_cities_dict = {i:j for i, j in zip(all_cities_name, all_cities_url)}
+        ######################################################
+
+        url = all_cities_dict.get(city) + owner_dict.get(seller_type) + '?s=' + str(page) + '&query=' + search_key +\
          '&min_price=' + str(min_price) + '&max_price=' + str(max_price) +\
           '&min_auto_year=' + str(min_year) + '&max_auto_year=' + str(max_year)
 
@@ -78,18 +91,18 @@ def get_all_search(seller_type, search_key, min_year, max_year, min_price, max_p
 
         return title_list, price_list, location_list, url_list, page_num
 
-    page_num = get_each_page(seller_type, 0,search_key, min_year, max_year, min_price, max_price)[4]
+    page_num = get_each_page(city, seller_type, 0,search_key, min_year, max_year, min_price, max_price)[4]
 
-    title_list = [get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price)[0] for page in page_num]
+    title_list = [get_each_page(city ,seller_type, page, search_key, min_year, max_year, min_price, max_price)[0] for page in page_num]
     title_unlist = [j for i in title_list for j in i]
 
-    price_list = [get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price)[1] for page in page_num]
+    price_list = [get_each_page(city ,seller_type, page, search_key, min_year, max_year, min_price, max_price)[1] for page in page_num]
     price_unlist = [j for i in price_list for j in i]
 
-    location_list = [get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price)[2] for page in page_num]
+    location_list = [get_each_page(city, seller_type, page, search_key, min_year, max_year, min_price, max_price)[2] for page in page_num]
     location_unlist = [j for i in location_list for j in i]
 
-    url_list = [get_each_page(seller_type, page, search_key, min_year, max_year, min_price, max_price)[3] for page in page_num]
+    url_list = [get_each_page(city, seller_type, page, search_key, min_year, max_year, min_price, max_price)[3] for page in page_num]
     url_unlist = [j for i in url_list for j in i]
 
     #########################get info inside each page###########################
