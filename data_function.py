@@ -191,6 +191,9 @@ def get_all_search(city, seller_type, search_key, min_year, max_year, min_price,
     df.price = df.price.apply(lambda x: x.replace('$',''))
     df.price = df.price.apply(lambda x: int(x))
 
+    df.body_text = df.body_text.apply(lambda x: x.replace('\n', ' '))
+    df.body_text = df.body_text.apply(lambda x: x.strip('  QR Code Link to This Post   '))
+
     cols = ['post_title', 'mileage', 'price', 'condition', 'title_status',\
             'transmission', 'drive', 'location', 'body_text','link']
     df = df[cols]
