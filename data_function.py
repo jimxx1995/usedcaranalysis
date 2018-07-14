@@ -107,14 +107,22 @@ def get_all_search(city, seller_type, search_key, min_year, max_year, min_price,
 
     #########################get info inside each page###########################
     info_list = []
+    body_text = []
     for i in url_unlist:
         page = requests.get(i)
         soup = BeautifulSoup(page.content, 'html.parser')
+
+        #for map and attrs
         span = soup.find_all('div', class_ = 'mapAndAttrs')
         info = span[0].find_all('p', class_ = 'attrgroup')[1].find_all('span')
+
         #all detail for one car
         info_detail = [i.text for i in info]
         info_list.append(info_detail)
+
+        #body text
+        body = soup.find_all('section', id = 'postingbody')[0].text
+        body_text.append(body)
 
     #mileage
     mileage = []
@@ -179,11 +187,12 @@ def get_all_search(city, seller_type, search_key, min_year, max_year, min_price,
     #build dataframe
     df = pd.DataFrame({'post_title':title_unlist, 'price':price_unlist, 'location':location_unlist,\
                        'link': url_unlist, 'mileage':mileage, 'transmission':tranny,\
-                       'title_status':car_title, 'condition':condition, 'drive':drive})
+                       'title_status':car_title, 'condition':condition, 'drive':drive, 'body_text':body_text})
     df.price = df.price.apply(lambda x: x.replace('$',''))
     df.price = df.price.apply(lambda x: int(x))
 
-    cols = ['post_title', 'mileage', 'price', 'condition', 'title_status', 'transmission', 'drive', 'location', 'link']
+    cols = ['post_title', 'mileage', 'price', 'condition', 'title_status',\
+            'transmission', 'drive', 'location', 'body_text','link']
     df = df[cols]
 
     return df
