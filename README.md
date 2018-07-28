@@ -23,6 +23,10 @@ we also used Honda Civic as an example for the data visualization.
 
 [Visualization](http://htmlpreview.github.io/?https://github.com/esmondhkchu/usedcaranalysis/blob/master/Data_Visualization.html)
 
+## Author
+[Esmond Chu](http://esmondhkchu.github.io) [Jimmy Chan](http://jimxx1995.github.io)
 
-# Licensing
+
+
+## Licensing
 In an effort to enable reproducible, collaborative reserach our project is subject to the MIT License which allows you to modify and distribute the above code for both private and commercial usage. See LICENSE to learn more.
