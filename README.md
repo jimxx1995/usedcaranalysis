@@ -12,7 +12,7 @@ We used Honda civic as an example for this project. The data was sourced from Cr
 
 ## Data Viz App (hosted by Heroku)
 
-**open the link below to see the web app, it may need a few minutes for activation since the web app will sleep if no traffic in a 30 minute period**
+<h6>open the link below to see the web app, it may need a few minutes for activation since the web app will sleep if no traffic in a 30 minute period<h6>
 
 we used Honda Civic as an example to create an web app for data visualizations, you can change it to any car you want in the [EDA Dash notebook](EDA_Dash.ipynb).
 
