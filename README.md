@@ -1,6 +1,6 @@
 # Analysis of US Used Car Market
 Can we predict real used car prices when KBB doesn't give an accurate estimation?
-This project tried to provide a more accurate estimation of used car market prices by applying machine learning and web scraping.
+This project tried to provide a more accurate estimation of used car market prices by applying machine learning and web scraping techniques.
 We created some interactive visualizations by Dash and Bokeh which give us an intuitive data exploration.
 
 ## Required Installations
