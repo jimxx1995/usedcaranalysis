@@ -7,14 +7,14 @@ We created some interactive visualizations by Dash and Bokeh which give us an in
 The only installation needed to run this repo is Python. Click here to learn about how to install [Python](https://www.python.org/getit/). Once installed, you should be good to go!
 
 ## Data Source and Acquisition
-We used the Honda civic as the item of choice for this project. The data was sourced from the Craigslist SF Bay Area website. All web scraping functions are stored in the [data_function file](data_function.py) and [descriptions](documentation.md). The whole project and data are for academic and educational use only. 
+We used Honda civic as an example for this project. The data was sourced from Craigslist SF Bay Area website. All web scraping functions are stored in the [data_function file](data_function.py), for more information about the functions, please refer to the [documentation] file(documentation.md). The whole project and data are for academic and educational use only.
 
 
 ## Data Viz App (hosted by Heroku)
 
-***open the link below to see the web app, it may need a few minutes for activation since the web app will sleep if no traffic in a 30 minute period**
+**open the link below to see the web app, it may need a few minutes for activation since the web app will sleep if no traffic in a 30 minute period**
 
-we used Honda Civic as an example to create an web app for the data visualization, you can change it to any car you want in the [EDA Dash notebook](EDA_Dash.ipynb).
+we used Honda Civic as an example to create an web app for data visualizations, you can change it to any car you want in the [EDA Dash notebook](EDA_Dash.ipynb).
 
 http://dash-viz.herokuapp.com/
 
@@ -29,4 +29,4 @@ we also used Honda Civic as an example for the data visualization.
 
 
 ## Licensing
-In an effort to enable reproducible, collaborative reserach our project is subject to the MIT License which allows you to modify and distribute the above code for both private and commercial usage. See LICENSE to learn more.
+In an effort to enable reproducible, collaborative research our project is subject to the MIT License which allows you to modify and distribute the above code for both private and commercial usage. See LICENSE to learn more.
