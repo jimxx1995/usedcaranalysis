@@ -12,7 +12,7 @@ We used the Honda civic as the item of choice for this project. The data was sou
 
 ## Data Viz App (hosted by Heroku)
 
-**open the link below to see the web app, it may need a few minutes for activation since the web app will sleep if no traffic in a 30 minute period**
+***open the link below to see the web app, it may need a few minutes for activation since the web app will sleep if no traffic in a 30 minute period**
 
 we used Honda Civic as an example to create an web app for the data visualization, you can change it to any car you want in the [EDA Dash notebook](EDA_Dash.ipynb).
 
@@ -21,7 +21,7 @@ http://dash-viz.herokuapp.com/
 ## Interactive Data Viz (Created by Bokeh)
 we also used Honda Civic as an example for the data visualization.
 
-[Visualization](Data_Visualization.html)
+[Visualization](http://htmlpreview.github.io/?https://github.com/esmondhkchu/usedcaranalysis/blob/master/Data_Visualization.html)
 
 
 # Licensing
