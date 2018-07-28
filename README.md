@@ -7,7 +7,7 @@ We created some interactive visualizations by Dash and Bokeh which give us an in
 The only installation needed to run this repo is Python. Click here to learn about how to install [Python](https://www.python.org/getit/). Once installed, you should be good to go!
 
 ## Data Source and Acquisition
-We used Honda civic as an example for this project. The data was sourced from Craigslist SF Bay Area website. All web scraping functions are stored in the [data_function file](data_function.py), for more information about the functions, please refer to the [documentation file] (documentation.md). The whole project and data are for academic and educational use only.
+We used Honda civic as an example for this project. The data was sourced from Craigslist SF Bay Area website. All web scraping functions are stored in the [data_function file](data_function.py), for more information about the functions, please refer to the [documentation file](documentation.md). The whole project and data are for academic and educational use only.
 
 
 ## Data Viz App (hosted by Heroku)
